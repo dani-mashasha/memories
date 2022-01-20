@@ -17,10 +17,10 @@ app.get("/", (req, res) => {
     res.send("Hello to memories API");
 });
 
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(__dirname + "/client/build"));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+    res.sendFile(__dirname + "/client/build/index.html");
 });
 
 const PORT = process.env.PORT || 5000;
