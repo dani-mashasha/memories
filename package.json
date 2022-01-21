@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\""
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,8 @@
     "express": "^4.17.2",
     "mongoose": "^6.1.6",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   }
 }
