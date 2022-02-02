@@ -1,13 +1,11 @@
 import { CREATE, UPDATE, DELETE, FETCH_ALL } from "../constants/actionTypes.js";
 
-export default (posts = [], action) => {
+const postReducer = (posts = [], action) => {
     switch (action.type) {
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);
         case UPDATE:
-            return posts.map((post) =>
-                post._id === action.payload._id ? action.payload : post
-            );
+            return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
         case FETCH_ALL:
             return action.payload;
         case CREATE:
@@ -16,3 +14,5 @@ export default (posts = [], action) => {
             return posts;
     }
 };
+
+export default postReducer;

@@ -2,8 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import postRoutes from "./routs/posts.js";
 import path from "path";
+
+import postRoutes from "./routs/posts.js";
+import userRoutes from "./routs/users.js";
 
 const __dirname = path.resolve();
 
@@ -16,6 +18,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/api/posts", postRoutes);
+app.use("/api/user", userRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello to memories API");
@@ -32,7 +35,5 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    .then(() =>
-        app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
-    )
+    .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
     .catch((error) => console.log(error.message));
